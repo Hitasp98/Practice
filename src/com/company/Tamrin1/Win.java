@@ -1,6 +1,6 @@
 package com.company.Tamrin1;
 
-public class win {
+public class Win {
 
 
     public void showMessage(String character){

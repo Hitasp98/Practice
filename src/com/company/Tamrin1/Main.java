@@ -1,4 +1,4 @@
-package com.company.Tamrin;
+package com.company.Tamrin1;
 
 public class Main {
 

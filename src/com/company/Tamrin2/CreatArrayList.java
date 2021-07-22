@@ -3,13 +3,19 @@ package com.company.Tamrin2;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class creatArrayList {
-    static ArrayList number;
-    public void fild(){
-        Random rand=new Random();
-        for(int i=0;i<15;i++){
-            number.add(rand.nextInt(20));
+public class CreatArrayList {
+    public ArrayList number = new ArrayList();
+    int r;
+
+    public void fild() {
+        Random rand = new Random();
+        for (int i = 0; i < 14; i++) {
+            r = rand.nextInt(10);
+            number.add(r);
         }
         System.out.println(number);
+        Pairregularly pg = new Pairregularly(number);
+pg.checked();
     }
+
 }

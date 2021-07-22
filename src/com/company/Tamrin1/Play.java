@@ -1,4 +1,4 @@
-package com.company.Tamrin;
+package com.company.Tamrin1;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -54,17 +54,27 @@ public class Play {
         int number;
         Chose chose = new Chose();
         while (true) {
+            CheckBlock checkBlock=new CheckBlock(m,n,numberOfBlock);
 
             System.out.println("Enter Your Number Block X:");
             nBlock = scanner.nextInt();
-            CheckBlock checkBlock=new CheckBlock(m,n,numberOfBlock);
+            int numbersave;
+            while (nBlock+n<numberOfBlock.size()){
+
+                nBlock=n+nBlock;
+
+            }
+//            numberOfBlock.set(nBlock,"x");
             checkBlock.checked("x",nBlock);
             showtable();
             System.out.println("Enter Your Number Block Y:");
             nBlock = scanner.nextInt();
+            while (nBlock+n<numberOfBlock.size()){
+                nBlock=n+nBlock;
+            }
             checkBlock.checked("y",nBlock);
 
-//
+
             showtable();
         }
     }

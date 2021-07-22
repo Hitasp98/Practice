@@ -1,4 +1,4 @@
-package com.company.Tamrin;
+package com.company.Tamrin1;
 
 import java.util.ArrayList;
 
@@ -19,12 +19,14 @@ public class CheckBlock {
         int nn;
         int number;
         nn = n - nBlock;
-
+        Win win = new Win();
         Chose chose = new Chose();
 
         number = nBlock + nn;
         int x = 0;
+
         for (int i = nBlock; i < numberOfBlock.size(); i += number) {
+
             if (numberOfBlock.get(i) instanceof Integer) {
                 numberOfBlock.set(i, charchter);
                 x++;
@@ -32,61 +34,102 @@ public class CheckBlock {
                 int cherckerLineForward = checkedHorizontalForward(i, charchter);
                 int oribBackwards = checkedOribBackwards(i, charchter);
                 int oribForward = checkedOribForward(i, charchter);
-                System.out.println(i + "  oribForward:" + oribForward + " oribBackwards:" + oribBackwards);
-//                System.out.println(i + " " + cherckerLineForward + " " + cherckerLineBackwards);
                 if (cherckerLineBackwards >= 3) {
-                    System.out.println("Win " + charchter);
+                    win.showMessage(charchter);
                     play.showtable();
                     chose.switchs();
                 } else if (cherckerLineForward >= 3) {
-                    System.out.println("Win " + charchter);
+                    win.showMessage(charchter);
                     play.showtable();
                     chose.switchs();
                 } else if (cherckerLineBackwards + cherckerLineForward >= 3) {
-                    System.out.println("Win " + charchter);
+                    win.showMessage(charchter);
                     play.showtable();
                     chose.switchs();
                 }
 
 
                 if (oribBackwards >= 3) {
-                    System.out.println("Win " + charchter);
+                    win.showMessage(charchter);
                     play.showtable();
 
                     chose.switchs();
                 } else if (oribForward >= 3) {
-                    System.out.println("Win " + charchter);
+                    win.showMessage(charchter);
                     play.showtable();
-
                     chose.switchs();
                 } else if (oribBackwards + oribForward >= 3) {
-                    System.out.println("Win " + charchter);
+                    win.showMessage(charchter);
                     play.showtable();
-
                     chose.switchs();
                 }
             } else if (numberOfBlock.get(i).equals(charchter)) {
-                x++;
-                if (x >= 4) {
-                    System.out.println("Win " + charchter);
-                    play.showtable();
+                int j = i;
+                while (true) {
+                    if (j < 0) {
+                        break;
+                    } else if (numberOfBlock.get(j).equals(charchter) || !numberOfBlock.equals(charchter)) {
+                        j = j - n;
+                    } else {
+                        numberOfBlock.set(j, charchter);
+                        int checkedVertical = checkedVerticalForward(j, charchter);
+                        if (checkedVertical >= 4) {
+                            win.showMessage(charchter);
+                            play.showtable();
+                            chose.switchs();
+                        }
+                        break;
+                    }
 
+                }
+
+                if (x >= 4) {
+                    win.showMessage(charchter);
+                    play.showtable();
                     chose.switchs();
                 }
             } else {
-                System.out.println("here have charchter!!");
-
-
+//                int j = i;
+//                while (true) {
+//                    if (j < 0) {
+//                        break;
+//                    } else if (numberOfBlock.get(j).equals(charchter) | numberOfBlock.equals("x")) {
+//                        j = j - n;
+//                    } else {
+//                        numberOfBlock.set(j, charchter);
+//                        int checkedVertical = checkedVerticalForward(j, charchter);
+//                        if (checkedVertical >= 4) {
+//                            win.showMessage(charchter);
+//                            play.showtable();
+//                            chose.switchs();
+//                        }
+//                        break;
+//                    }
+//
+//                }
+                System.out.println("not" + i + " numberOfBlock  " + numberOfBlock.get(i));
             }
-            if (x >= 4) {
-                System.out.println("Win " + charchter);
-                chose.switchs();
-                play.showtable();
 
-            }
 
         }
+        if (x >= 4) {
+            win.showMessage(charchter);
+            chose.switchs();
+            play.showtable();
+        }
+    }
 
+    public int checkedVerticalForward(int i, String c) {
+        int sum = 0;
+        for (int j = i; j < numberOfBlock.size(); j += n) {
+            if (numberOfBlock.get(j).equals(c)) {
+                sum++;
+                System.out.println(sum);
+            } else {
+                break;
+            }
+        }
+        return sum;
     }
 
     public int checkedHorizontalForward(int i, String c) {
@@ -96,7 +139,6 @@ public class CheckBlock {
             if (numberOfBlock.get(j).equals(c)) {
 
                 sum++;
-//                System.out.println(numberOfBlock.get(j) + "  " + j + "  " + sum);
 
             } else {
                 break;
@@ -130,10 +172,10 @@ public class CheckBlock {
             jj++;
 
             nn += jj + n;
-            System.out.println(" Backwards nn : " + nn + "j: " + jj);
+//            System.out.println(" Backwards nn : " + nn + "j: " + jj);
 
             if (nn < numberOfBlock.size()) {
-                System.out.println(" Backwards numberOfBlock : " + numberOfBlock.get(nn));
+//                System.out.println(" Backwards numberOfBlock : " + numberOfBlock.get(nn));
                 if (numberOfBlock.get(nn).equals(c)) {
                     sum++;
 
@@ -157,7 +199,7 @@ public class CheckBlock {
 //
 
             jj++;
-            if(nn<numberOfBlock.size()){
+            if (nn < numberOfBlock.size()) {
 
                 if (numberOfBlock.get(nn).equals(c)) {
                     sum++;
@@ -167,7 +209,6 @@ public class CheckBlock {
                 }
 
             }
-
 
 
         }
