@@ -63,37 +63,7 @@ public class Play {
             System.out.println("Enter Your Number Block Y:");
             nBlock = scanner.nextInt();
             checkBlock.checked("y",nBlock);
-//            nn = n - nBlock;
-//            number = nBlock + nn;
-//            int x = 0;
-//            for (int i = nBlock; i < numberOfBlock.size(); i += number) {
-//                if (numberOfBlock.get(i).equals("y")) {
-//                    System.out.println("here have charchter!!");
-//                    break;
-//                } else {
-//                    numberOfBlock.set(i, "x");
-//                    x++;
-//                }
-//                if (x == 4) {
-//                    System.out.println("Win X");
-//                    chose.switchs();
-//                }
-//            }
-//            System.out.println("Enter Your Number Block Y:");
-//            nBlock = scanner.nextInt();
-//            nn = n - nBlock;
-//            number = nBlock + nn;
-//            int y = 0;
-//            for (int i = nBlock; i < numberOfBlock.size(); i += number) {
-//                if (numberOfBlock.get(i).equals("y")) {
-//                    System.out.println("here have charchter!!");
-//                    break;
-//
-//                } else {
-//                    numberOfBlock.set(i, "y");
-//
-//                }
-//            }
+
 //
             showtable();
         }
