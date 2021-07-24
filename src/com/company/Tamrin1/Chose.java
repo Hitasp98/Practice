@@ -9,7 +9,7 @@ public class Chose {
     static public void switchs() {
         Scanner scanner = new Scanner(System.in);
         int a;
-        Play play = new Play();
+        Player player = new Player();
         try {
             while (true) {
 
@@ -18,7 +18,7 @@ public class Chose {
                 a = scanner.nextInt();
                 switch (a) {
                     case 1:
-                        play.creatTable();
+                        player.creatTable();
                         break;
                     case 2:
                         System.exit(0);

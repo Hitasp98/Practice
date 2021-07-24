@@ -3,7 +3,7 @@ package com.company.Tamrin1;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Play {
+public class Player {
     Scanner scanner = new Scanner(System.in);
     static int n;
     static int m;
@@ -39,8 +39,8 @@ public class Play {
 
     public void showtable() {
         int ss = 0;
-        for (int i = 0; i < Play.m; i++) {
-            for (int j = 0; j < Play.n; j++) {
+        for (int i = 0; i < Player.m; i++) {
+            for (int j = 0; j < Player.n; j++) {
                 System.out.print(numberOfBlock.get(ss) + "||");
                 ss++;
             }
@@ -49,33 +49,44 @@ public class Play {
     }
 
     public void setblock() {
-        int nBlock;
+        int nBlockX;
+        int nBlockY;
         int nn;
         int number;
         Chose chose = new Chose();
+        Player player = new Player();
         while (true) {
-            CheckBlock checkBlock=new CheckBlock(m,n,numberOfBlock);
 
             System.out.println("Enter Your Number Block X:");
-            nBlock = scanner.nextInt();
+            nBlockX = scanner.nextInt();
             int numbersave;
-            while (nBlock+n<numberOfBlock.size()){
+            player.sendCharacter(nBlockX, "x");
 
-                nBlock=n+nBlock;
-
-            }
-//            numberOfBlock.set(nBlock,"x");
-            checkBlock.checked("x",nBlock);
             showtable();
             System.out.println("Enter Your Number Block Y:");
-            nBlock = scanner.nextInt();
-            while (nBlock+n<numberOfBlock.size()){
-                nBlock=n+nBlock;
-            }
-            checkBlock.checked("y",nBlock);
+            nBlockY = scanner.nextInt();
+            player.sendCharacter(nBlockY, "y");
 
 
             showtable();
         }
+    }
+
+    public void sendCharacter(int nBlock, String NameCahracter) {
+        CheckBlock checkBlock = new CheckBlock(m, n, numberOfBlock);
+
+        while (nBlock + n < numberOfBlock.size()) {
+            if (numberOfBlock.get(nBlock + n) instanceof Integer) {
+                nBlock = nBlock + n;
+
+            } else if (numberOfBlock.get(nBlock + n) instanceof String) {
+                checkBlock.checked(NameCahracter, nBlock);
+
+                break;
+            }
+
+        }
+        checkBlock.checked(NameCahracter, nBlock);
+
     }
 }

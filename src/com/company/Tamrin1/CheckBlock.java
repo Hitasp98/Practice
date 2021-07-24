@@ -7,7 +7,7 @@ public class CheckBlock {
     int n;
     int m;
     ArrayList numberOfBlock;
-    Play play = new Play();
+    Player player = new Player();
 
     public CheckBlock(int n, int m, ArrayList numberOfBlock) {
         this.n = n;
@@ -16,109 +16,50 @@ public class CheckBlock {
     }
 
     public void checked(String charchter, int nBlock) {
-        int nn;
-        int number;
-        nn = n - nBlock;
-        Win win = new Win();
-        Chose chose = new Chose();
 
-        number = nBlock + nn;
-        int x = 0;
+            numberOfBlock.set(nBlock, charchter);
+            int ChHR= checkHR(nBlock,charchter);
+            System.out.println(ChHR);
 
-        for (int i = nBlock; i < numberOfBlock.size(); i += number) {
-
-            if (numberOfBlock.get(i) instanceof Integer) {
-                numberOfBlock.set(i, charchter);
-                x++;
-                int cherckerLineBackwards = checkedHorizontalBackwards(i, charchter);
-                int cherckerLineForward = checkedHorizontalForward(i, charchter);
-                int oribBackwards = checkedOribBackwards(i, charchter);
-                int oribForward = checkedOribForward(i, charchter);
-                if (cherckerLineBackwards >= 3) {
-                    win.showMessage(charchter);
-                    play.showtable();
-                    chose.switchs();
-                } else if (cherckerLineForward >= 3) {
-                    win.showMessage(charchter);
-                    play.showtable();
-                    chose.switchs();
-                } else if (cherckerLineBackwards + cherckerLineForward >= 3) {
-                    win.showMessage(charchter);
-                    play.showtable();
-                    chose.switchs();
-                }
-
-
-                if (oribBackwards >= 3) {
-                    win.showMessage(charchter);
-                    play.showtable();
-
-                    chose.switchs();
-                } else if (oribForward >= 3) {
-                    win.showMessage(charchter);
-                    play.showtable();
-                    chose.switchs();
-                } else if (oribBackwards + oribForward >= 3) {
-                    win.showMessage(charchter);
-                    play.showtable();
-                    chose.switchs();
-                }
-            } else if (numberOfBlock.get(i).equals(charchter)) {
-                int j = i;
-                while (true) {
-                    if (j < 0) {
-                        break;
-                    } else if (numberOfBlock.get(j).equals(charchter) || !numberOfBlock.equals(charchter)) {
-                        j = j - n;
-                    } else {
-                        numberOfBlock.set(j, charchter);
-                        int checkedVertical = checkedVerticalForward(j, charchter);
-                        if (checkedVertical >= 4) {
-                            win.showMessage(charchter);
-                            play.showtable();
-                            chose.switchs();
-                        }
-                        break;
-                    }
-
-                }
-
-                if (x >= 4) {
-                    win.showMessage(charchter);
-                    play.showtable();
-                    chose.switchs();
-                }
-            } else {
-//                int j = i;
-//                while (true) {
-//                    if (j < 0) {
-//                        break;
-//                    } else if (numberOfBlock.get(j).equals(charchter) | numberOfBlock.equals("x")) {
-//                        j = j - n;
-//                    } else {
-//                        numberOfBlock.set(j, charchter);
-//                        int checkedVertical = checkedVerticalForward(j, charchter);
-//                        if (checkedVertical >= 4) {
-//                            win.showMessage(charchter);
-//                            play.showtable();
-//                            chose.switchs();
-//                        }
-//                        break;
-//                    }
-//
-//                }
-                System.out.println("not" + i + " numberOfBlock  " + numberOfBlock.get(i));
-            }
-
-
-        }
-        if (x >= 4) {
-            win.showMessage(charchter);
-            chose.switchs();
-            play.showtable();
-        }
     }
+public  int checkHR(int c,String charechter){
+        int sum=0;
+        for(int i=c;i<numberOfBlock.size();i=i+n+1){
+            if(numberOfBlock.get(i).equals(charechter)){
+                sum++;
+            }
+            else {
+                break;
+            }
+        }
+        return sum;
+}
+    public  int checkLeft(int c,String charechter){
+        int sum=0;
+        for(int i=c;i<numberOfBlock.size();i++){
 
+            if(numberOfBlock.get(i).equals(charechter)){
+                sum++;
+            }
+            else {
+                break;
+            }
+        }
+        return sum;
+    }
+    public  int checkRight(int c,String charechter){
+        int sum=0;
+        for(int i=c;i>0;i--){
+
+            if(numberOfBlock.get(i).equals(charechter)){
+                sum++;
+            }
+            else {
+                break;
+            }
+        }
+        return sum;
+    }
     public int checkedVerticalForward(int i, String c) {
         int sum = 0;
         for (int j = i; j < numberOfBlock.size(); j += n) {
